@@ -54,6 +54,7 @@ public class OxoControllerTestWithMockito {
         Oxo oxo = new Oxo("Description 1", "Question 1", LocalDate.now(), LocalDate.now().plusDays(5), "Createur 1");
         oxo.setId(oxoId);
 
+
         when(oxoRepository.findById(oxoId)).thenReturn(Optional.of(oxo));
 
         ResponseEntity<Oxo> result = oxoController.getOxoById(oxoId);
@@ -66,7 +67,7 @@ public class OxoControllerTestWithMockito {
     public void testAddOxo() {
         Oxo oxo = new Oxo("Description 1", "Question 1", LocalDate.now(), LocalDate.now().plusDays(5), "Createur 1");
 
-        when(validator.validate(oxo)).thenReturn(Collections.emptyList());
+        when(validator.validate(oxo)).thenReturn(Collections.emptySet());
         when(oxoRepository.save(oxo)).thenReturn(oxo);
 
         ResponseEntity<Oxo> result = oxoController.addOxo(oxo);
